@@ -35,13 +35,8 @@ public class User {
 	private String username;
 	private String password;
 
-	@ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE} , fetch = FetchType.EAGER)
 	@JoinTable (name = "users_roles",joinColumns =  @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
 	List<Role> roles= new ArrayList<Role>();
 
-	//	public User(String username, String password, List<Role> roles) {
-	//		this.username = username;
-	//		this.password = password;
-	//		this.roles = roles;
-	//	}
 }
